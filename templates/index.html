@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Rainfall Prediction</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #1e3c72, #2a5298);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .container {
+            background: #ffffff;
+            padding: 40px 45px;
+            border-radius: 16px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+            width: 100%;
+            max-width: 420px;
+            animation: fadeIn 1s ease-in-out;
+        }
+
+        h2 {
+            text-align: center;
+            color: #1e3c72;
+            margin-bottom: 25px;
+            font-size: 26px;
+        }
+
+        label {
+            font-weight: 600;
+            display: block;
+            margin-top: 15px;
+            color: #333;
+            font-size: 14px;
+        }
+
+        input[type="number"] {
+            width: 100%;
+            padding: 12px;
+            margin-top: 6px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            box-sizing: border-box;
+            transition: 0.3s;
+            font-size: 15px;
+        }
+
+        input[type="number"]:focus {
+            border-color: #2a5298;
+            outline: none;
+            box-shadow: 0 0 5px rgba(42, 82, 152, 0.4);
+        }
+
+        button {
+            margin-top: 25px;
+            width: 100%;
+            background: linear-gradient(135deg, #007BFF, #0056b3);
+            color: white;
+            border: none;
+            padding: 14px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        button:hover {
+            background: linear-gradient(135deg, #0056b3, #003d80);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+        }
+
+        .result {
+            margin-top: 25px;
+            font-weight: bold;
+            text-align: center;
+            color: #2d6a4f;
+            font-size: 18px;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>🌧 Rainfall Prediction</h2>
+        <form action="/predict" method="post">
+            <label>🌡 Temperature (°C):</label>
+            <input type="number" name="temperature" step="0.01" required>
+
+            <label>💧 Humidity (%):</label>
+            <input type="number" name="humidity" step="0.01" required>
+
+            <label>🌬 Wind Speed (km/h):</label>
+            <input type="number" name="windspeed" step="0.01" required>
+
+            <label>📊 Pressure (hPa):</label>
+            <input type="number" name="pressure" step="0.01" required>
+
+            <button type="submit">Predict Rainfall</button>
+        </form>
+
+        {% if prediction_text %}
+            <div class="result">{{ prediction_text }}</div>
+        {% endif %}
+    </div>
+</body>
+</html>
